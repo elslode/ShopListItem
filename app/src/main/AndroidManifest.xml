@@ -8,13 +8,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:name=".presentation.ShopListApp"
         android:theme="@style/Theme.ShopListItem">
         <activity
             android:name=".presentation.ShopItemActivity"
-            android:exported="true"
-            android:label="@string/title_activity_detail_item"
-            android:theme="@style/Theme.ShopListItem.NoActionBar"/>
-
+            android:exported="true" />
         <activity
             android:name=".presentation.MainActivity"
             android:exported="true">
@@ -24,5 +22,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

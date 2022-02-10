@@ -21,14 +21,18 @@ class ShopItemActivity : AppCompatActivity(), ShopItemFragment.OnEditingFinished
         }
     }
 
+    override fun onEditingFinished() {
+        finish()
+    }
+
     private fun launchRightMode() {
         val fragment = when (screenMode) {
             MODE_EDIT -> ShopItemFragment.newInstanceEditItem(shopItemId)
-            MODE_ADD -> ShopItemFragment.newInstanceAddItem()
-            else -> throw java.lang.RuntimeException(" $screenMode")
+            MODE_ADD  -> ShopItemFragment.newInstanceAddItem()
+            else      -> throw RuntimeException("Unknown screen mode $screenMode")
         }
         supportFragmentManager.beginTransaction()
-            .replace(R.id.shop_item_fragment, fragment)
+            .replace(R.id.shop_item_container, fragment)
             .commit()
     }
 
@@ -50,9 +54,10 @@ class ShopItemActivity : AppCompatActivity(), ShopItemFragment.OnEditingFinished
     }
 
     companion object {
+
         private const val EXTRA_SCREEN_MODE = "extra_mode"
-        private const val MODE_EDIT = "mode_edit"
         private const val EXTRA_SHOP_ITEM_ID = "extra_shop_item_id"
+        private const val MODE_EDIT = "mode_edit"
         private const val MODE_ADD = "mode_add"
         private const val MODE_UNKNOWN = ""
 
@@ -68,9 +73,5 @@ class ShopItemActivity : AppCompatActivity(), ShopItemFragment.OnEditingFinished
             intent.putExtra(EXTRA_SHOP_ITEM_ID, shopItemId)
             return intent
         }
-    }
-
-    override fun onEditingFinished() {
-        finish()
     }
 }
