@@ -1,5 +1,6 @@
 package com.example.shoplistitem.presentation
 
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -11,7 +12,7 @@ import com.example.shoplistitem.R
 import com.example.shoplistitem.databinding.ActivityMainBinding
 import javax.inject.Inject
 
-class MainActivity: AppCompatActivity(), ShopItemFragment.OnEditingFinishedListener {
+class MainActivity : AppCompatActivity(), ShopItemFragment.OnEditingFinishedListener {
 
     private lateinit var viewModel: MainViewModel
     private lateinit var shopListAdapter: ShopListAdapter
@@ -42,6 +43,14 @@ class MainActivity: AppCompatActivity(), ShopItemFragment.OnEditingFinishedListe
                 launchFragment(ShopItemFragment.newInstanceAddItem())
             }
         }
+        contentResolver.query(
+            Uri.parse("content://com.example.shoplistitem/shop_items"),
+            null,
+            null,
+            null,
+            null,
+            null
+        )
     }
 
     override fun onEditingFinished() {
